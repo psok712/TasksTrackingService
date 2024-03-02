@@ -1,0 +1,182 @@
+{
+  "format": 1,
+  "restore": {
+    "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Bll/HomeworkApp.Bll.csproj": {}
+  },
+  "projects": {
+    "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Bll/HomeworkApp.Bll.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Bll/HomeworkApp.Bll.csproj",
+        "projectName": "HomeworkApp.Bll",
+        "projectPath": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Bll/HomeworkApp.Bll.csproj",
+        "packagesPath": "/Users/mgrishkov/.nuget/packages/",
+        "outputPath": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Bll/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mgrishkov/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-virtual-virtual": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Dal/HomeworkApp.Dal.csproj": {
+                "projectPath": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Dal/HomeworkApp.Dal.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Dal/HomeworkApp.Dal.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Dal/HomeworkApp.Dal.csproj",
+        "projectName": "HomeworkApp.Dal",
+        "projectPath": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Dal/HomeworkApp.Dal.csproj",
+        "packagesPath": "/Users/mgrishkov/.nuget/packages/",
+        "outputPath": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Dal/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/Users/mgrishkov/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-internal-local/": {},
+          "https://artifactory.s.o3.ru/artifactory/api/nuget/nuget-virtual-virtual": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Dapper": {
+              "target": "Package",
+              "version": "[2.0.123, )"
+            },
+            "FluentMigrator": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentMigrator.Runner": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentMigrator.Runner.Postgres": {
+              "target": "Package",
+              "version": "[3.3.2, )"
+            },
+            "FluentValidation.AspNetCore": {
+              "target": "Package",
+              "version": "[10.3.6, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[6.0.0, )"
+            },
+            "StackExchange.Redis": {
+              "target": "Package",
+              "version": "[2.6.122, )"
+            },
+            "npgsql": {
+              "target": "Package",
+              "version": "[6.0.3, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "downloadDependencies": [
+            {
+              "name": "Microsoft.AspNetCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            },
+            {
+              "name": "Microsoft.NETCore.App.Ref",
+              "version": "[7.0.15, 7.0.15]"
+            }
+          ],
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/local/share/dotnet/sdk/8.0.101/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}

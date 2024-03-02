@@ -1,0 +1,17 @@
+{
+  "version": 2,
+  "dgSpecHash": "Lq0PCcHeo8xhRFa8hC6QYd60aHVNR6HxkvB4RJVymHzkZoYAxrkEFmWy8Eo0B44502veRrFmNsU5vc8s8wWCng==",
+  "success": true,
+  "projectFilePath": "/Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp.Proto/HomeworkApp.Proto.csproj",
+  "expectedPackageFiles": [
+    "/Users/mgrishkov/.nuget/packages/google.protobuf/3.24.3/google.protobuf.3.24.3.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/grpc.core.api/2.57.0/grpc.core.api.2.57.0.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/grpc.net.client/2.57.0/grpc.net.client.2.57.0.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/grpc.net.common/2.57.0/grpc.net.common.2.57.0.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/grpc.tools/2.58.0/grpc.tools.2.58.0.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/microsoft.extensions.logging.abstractions/6.0.0/microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/microsoft.netcore.app.ref/7.0.15/microsoft.netcore.app.ref.7.0.15.nupkg.sha512",
+    "/Users/mgrishkov/.nuget/packages/microsoft.aspnetcore.app.ref/7.0.15/microsoft.aspnetcore.app.ref.7.0.15.nupkg.sha512"
+  ],
+  "logs": []
+}
