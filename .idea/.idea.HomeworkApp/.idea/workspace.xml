@@ -7,7 +7,76 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="64b90168-c7ac-4695-b2d5-6edfde397752" name="Changes" comment="" />
+    <list default="true" id="64b90168-c7ac-4695-b2d5-6edfde397752" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/.idea.HomeworkApp/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/.idea.HomeworkApp/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/HomeworkApp.Bll.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/HomeworkApp.Bll.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/HomeworkApp.Bll.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/HomeworkApp.Bll.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/HomeworkApp.Bll.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/Debug/net7.0/HomeworkApp.Bll.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/HomeworkApp.Bll.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/HomeworkApp.Bll.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/HomeworkApp.Bll.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Bll/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/HomeworkApp.Dal.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/HomeworkApp.Dal.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/HomeworkApp.Dal.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/HomeworkApp.Dal.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/HomeworkApp.Dal.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/Debug/net7.0/HomeworkApp.Dal.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/HomeworkApp.Dal.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/HomeworkApp.Dal.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/HomeworkApp.Dal.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Dal/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/1255d1a520d30ea4_enums.protodep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/1255d1a520d30ea4_tasks.protodep" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/HomeworkApp.Proto.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/HomeworkApp.Proto.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/HomeworkApp.Proto.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/HomeworkApp.Proto.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/HomeworkApp.Proto.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/HomeworkApp.Proto.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/Protos/Enums.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/Protos/EnumsGrpc.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/Protos/Tasks.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/Debug/net7.0/Protos/TasksGrpc.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/HomeworkApp.Proto.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/HomeworkApp.Proto.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/HomeworkApp.Proto.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp.Proto/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.AssemblyInfo.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.AssemblyInfoInputs.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.GeneratedMSBuildEditorConfig.editorconfig" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.GlobalUsings.g.cs" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.assets.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.csproj.AssemblyReference.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/HomeworkApp.csproj.nuget.dgspec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/HomeworkApp.csproj.nuget.g.props" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/HomeworkApp.csproj.nuget.g.targets" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/project.assets.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/project.nuget.cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/project.packagespec.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/rider.project.model.nuget.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/HomeworkApp/obj/rider.project.restore.info" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/tests/HomeworkApp.IntegrationTests/obj/Debug/net7.0/HomeworkApp.IntegrationTests.assets.cache" beforeDir="false" afterPath="$PROJECT_DIR$/tests/HomeworkApp.IntegrationTests/obj/Debug/net7.0/HomeworkApp.IntegrationTests.assets.cache" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -58,24 +127,32 @@
     </option>
   </component>
   <component name="HighlightingSettingsPerFile">
-    <setting file="file://$PROJECT_DIR$/src/HomeworkApp/obj/Debug/net7.0/.NETCoreApp,Version=v7.0.AssemblyAttributes.cs" root0="SKIP_HIGHLIGHTING" />
+    <setting file="mock:///Users/mgrishkov/Repos/Route256/11-stream/week-6/homework/src/HomeworkApp/obj/Debug/net7.0/HomeworkApp.AssemblyInfo.cs" root0="SKIP_HIGHLIGHTING" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
   </component>
-  <component name="ProjectColorInfo"><![CDATA[{
-  "associatedIndex": 2
-}]]></component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 2
+}</component>
   <component name="ProjectId" id="2d9JTrdS3LiPvV370kXZfmhhnmf" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "git-widget-placeholder": "preview"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;RunOnceActivity.OpenProjectViewOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;preview&quot;
+  },
+  &quot;keyToStringList&quot;: {
+    &quot;rider.external.source.directories&quot;: [
+      &quot;/Users/mgrishkov/Library/Application Support/JetBrains/Rider2023.3/resharper-host/DecompilerCache&quot;,
+      &quot;/Users/mgrishkov/Library/Application Support/JetBrains/Rider2023.3/resharper-host/SourcesCache&quot;,
+      &quot;/Users/mgrishkov/.local/share/Symbols/src&quot;
+    ]
   }
-}]]></component>
+}</component>
   <component name="RunManager">
     <configuration name="HomeworkApp: local" type="LaunchSettings" factoryName=".NET Launch Settings Profile">
       <option name="LAUNCH_PROFILE_PROJECT_FILE_PATH" value="$PROJECT_DIR$/src/HomeworkApp/HomeworkApp.csproj" />
@@ -102,6 +179,7 @@
       <option name="presentableId" value="Default" />
       <updated>1709414371965</updated>
       <workItem from="1709414373068" duration="2528000" />
+      <workItem from="1709899667404" duration="829000" />
     </task>
     <task id="LOCAL-00001" summary="* init">
       <option name="closed" value="true" />
@@ -127,7 +205,15 @@
       <option name="project" value="LOCAL" />
       <updated>1709416173888</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="* add gitignore">
+      <option name="closed" value="true" />
+      <created>1709899809794</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1709899809794</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -144,6 +230,7 @@
   <component name="VcsManagerConfiguration">
     <option name="CLEAR_INITIAL_COMMIT_MESSAGE" value="true" />
     <MESSAGE value="* init" />
-    <option name="LAST_COMMIT_MESSAGE" value="* init" />
+    <MESSAGE value="* add gitignore" />
+    <option name="LAST_COMMIT_MESSAGE" value="* add gitignore" />
   </component>
 </project>

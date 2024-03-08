@@ -1,6 +1,0 @@
-obj/Debug/net7.0/Protos/Tasks.cs \
-obj/Debug/net7.0/Protos/TasksGrpc.cs: Protos/enums.proto\
- /Users/mgrishkov/.nuget/packages/grpc.tools/2.58.0/build/native/include/google/protobuf/empty.proto\
- /Users/mgrishkov/.nuget/packages/grpc.tools/2.58.0/build/native/include/google/protobuf/wrappers.proto\
- /Users/mgrishkov/.nuget/packages/grpc.tools/2.58.0/build/native/include/google/protobuf/timestamp.proto\
- Protos/tasks.proto
