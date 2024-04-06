@@ -37,7 +37,8 @@ namespace HomeworkApp.IntegrationTests.Fixtures
             ClearDatabase(host);
             host.MigrateUp();
 
-            var serviceProvider = host.Services;
+            var scope = host.Services.CreateScope();
+            var serviceProvider = scope.ServiceProvider;
             UserRepository = serviceProvider.GetRequiredService<IUserRepository>();
             TaskRepository = serviceProvider.GetRequiredService<ITaskRepository>();
             TaskLogRepository = serviceProvider.GetRequiredService<ITaskLogRepository>();
