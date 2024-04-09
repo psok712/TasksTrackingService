@@ -4,6 +4,7 @@ using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
 using HomeworkApp.Dal.Settings;
 using Microsoft.Extensions.Options;
+using TaskStatus = HomeworkApp.Dal.Enums.TaskStatus;
 
 namespace HomeworkApp.Dal.Repositories;
 
@@ -93,5 +94,47 @@ update tasks
                     Status = model.Status
                 },
                 cancellationToken: token));
+    }
+
+    public async Task<SubTaskModel[]> GetSubTasksInStatus(long parentTaskId, TaskStatus[] statuses, CancellationToken token)
+    {
+        const string sqlQuery = @"
+with recursive tasks_tree as (select t.id
+                                   , t.title
+                                   , t.status
+                                   , array[parent_task_id]::bigint[] as parent_task_ids
+                                from tasks t
+                               where t.parent_task_id = @parent_task_id
+
+                               union all
+
+                              select t.id
+                                   , t.title
+                                   , t.status
+                                   , parent_task_ids || array[tt.id] as parent_task_ids
+                                from tasks t
+                                join tasks_tree tt on t.parent_task_id = tt.id)
+select *
+  from tasks_tree
+";
+        var conditions = new List<string>();
+        var @params = new DynamicParameters();
+
+        if (statuses.Length != 0)
+        {
+            conditions.Add($"status = any(@status)");
+            @params.Add($"parent_task_id", parentTaskId);
+            @params.Add($"status", statuses.Select(status => (int)status).ToArray());
+        }
+        
+        var cmd = new CommandDefinition(
+            sqlQuery + $" where {string.Join(" and ", conditions)} ",
+            @params,
+            commandTimeout: DefaultTimeoutInSeconds,
+            cancellationToken: token);
+        
+        await using var connection = await GetConnection();
+        return (await connection.QueryAsync<SubTaskModel>(cmd))
+            .ToArray();
     }
 }

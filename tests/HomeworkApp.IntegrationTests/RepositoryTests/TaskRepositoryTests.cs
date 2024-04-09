@@ -5,6 +5,7 @@ using HomeworkApp.IntegrationTests.Creators;
 using HomeworkApp.IntegrationTests.Fakers;
 using HomeworkApp.IntegrationTests.Fixtures;
 using Xunit;
+using TaskStatus = HomeworkApp.Dal.Enums.TaskStatus;
 
 namespace HomeworkApp.IntegrationTests.RepositoryTests;
 
@@ -88,5 +89,34 @@ public class TaskRepositoryTests
         
         expectedTask = expectedTask with {Status = assign.Status};
         task.Should().BeEquivalentTo(expectedTask);
+    }
+    
+    [Fact]
+    public async Task GetSubTasksInStatus_SetParentTaskAndStatus_ShouldReturnAllChildWithSetStatuses()
+    {
+        // Arrange
+        const TaskStatus expectedStatus = TaskStatus.InProgress;
+        var parentTaskId = TaskEntityV1Faker.Generate().First().Id;
+        var tasks = TaskEntityV1Faker.Generate(2);
+        tasks[0] = tasks.First()
+            .WithId(0)
+            .WithParentByTaskId(parentTaskId)
+            .WithStatusTaskId((int)expectedStatus);
+        tasks[1] = tasks.Last()
+            .WithId(1)
+            .WithParentByTaskId(parentTaskId)
+            .WithStatusTaskId((int)TaskStatus.Done);
+        
+        TaskStatus[] statuses = [expectedStatus];
+        await _repository.Add(tasks, default);
+
+        
+        // Act
+        var results = await _repository.GetSubTasksInStatus(parentTaskId, statuses, CancellationToken.None);
+        
+        
+        // Asserts
+        results.All(t => t.ParentTaskIds[0] == parentTaskId).Should().BeTrue();
+        results.All(t => t.Status == expectedStatus).Should().BeTrue();
     }
 }
