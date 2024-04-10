@@ -4,6 +4,7 @@ using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
 using HomeworkApp.Dal.Settings;
 using Microsoft.Extensions.Options;
+using Microsoft.IdentityModel.Tokens;
 using TaskStatus = HomeworkApp.Dal.Enums.TaskStatus;
 
 namespace HomeworkApp.Dal.Repositories;
@@ -104,7 +105,7 @@ with recursive tasks_tree as (select t.id
                                    , t.status
                                    , array[parent_task_id]::bigint[] as parent_task_ids
                                 from tasks t
-                               where t.parent_task_id = @parent_task_id
+                               where t.parent_task_id = @ParentTaskId
 
                                union all
 
@@ -122,9 +123,9 @@ select *
 
         if (statuses.Length != 0)
         {
-            conditions.Add($"status = any(@status)");
-            @params.Add($"parent_task_id", parentTaskId);
-            @params.Add($"status", statuses.Select(status => (int)status).ToArray());
+            conditions.Add($"status = any(@Status)");
+            @params.Add($"ParentTaskId", parentTaskId);
+            @params.Add($"Status", statuses.Select(status => (int)status).ToArray());
         }
         
         var cmd = new CommandDefinition(
@@ -136,5 +137,25 @@ select *
         await using var connection = await GetConnection();
         return (await connection.QueryAsync<SubTaskModel>(cmd))
             .ToArray();
+    }
+
+    public async Task SetParentTaskId(SetParentTaskIdModel model, CancellationToken token)
+    {
+        const string sqlQuery = @"
+update tasks
+   set parent_task_id = @ParentTaskId
+ where id = @TaskId
+";
+
+        await using var connection = await GetConnection();
+        await connection.ExecuteAsync(
+            new CommandDefinition(
+                sqlQuery,
+                new
+                {
+                    TaskId = model.TaskId,
+                    ParentTaskId = model.ParentTaskId
+                },
+                cancellationToken: token));
     }
 }

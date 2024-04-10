@@ -13,4 +13,6 @@ public interface ITaskRepository
     Task Assign(AssignTaskModel model, CancellationToken token);
     
     Task<SubTaskModel[]> GetSubTasksInStatus(long parentTaskId, TaskStatus[] statuses, CancellationToken token);
+
+    Task SetParentTaskId(SetParentTaskIdModel model, CancellationToken token);
 }
