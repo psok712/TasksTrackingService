@@ -17,6 +17,8 @@ namespace HomeworkApp.IntegrationTests.Fixtures
         
         public ITakenTaskRepository TakenTaskRepository { get; }
         
+        public ITaskCommentRepository TaskCommentRepository { get; }
+        
         public IUserScheduleRepository UserScheduleRepository { get; }
 
         public TestFixture()
@@ -44,6 +46,7 @@ namespace HomeworkApp.IntegrationTests.Fixtures
             TaskLogRepository = serviceProvider.GetRequiredService<ITaskLogRepository>();
             TakenTaskRepository = serviceProvider.GetRequiredService<ITakenTaskRepository>();
             UserScheduleRepository = serviceProvider.GetRequiredService<IUserScheduleRepository>();
+            TaskCommentRepository = serviceProvider.GetRequiredService<ITaskCommentRepository>();
             
             FluentAssertionOptions.UseDefaultPrecision();
         }
