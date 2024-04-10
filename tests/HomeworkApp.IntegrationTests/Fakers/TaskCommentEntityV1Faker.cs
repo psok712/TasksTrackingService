@@ -14,7 +14,7 @@ public static class TaskCommentEntityV1Faker
         .RuleFor(x => x.TaskId, _ => Create.RandomId())
         .RuleFor(x => x.Message, f => f.Random.Word())
         .RuleFor(x => x.AuthorUserId, _ => Create.RandomId())
-        .RuleFor(x => x.CreatedAt, _ => DateTimeOffset.Now.ToUniversalTime())
+        .RuleFor(x => x.At, _ => DateTimeOffset.Now.ToUniversalTime())
         .RuleForType(typeof(long), f => f.Random.Long(0L));
 
     public static TaskCommentEntityV1[] Generate(int count = 1)

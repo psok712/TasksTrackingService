@@ -10,7 +10,7 @@ public record TaskCommentEntityV1
     
     public required string Message { get; init; }
     
-    public required DateTimeOffset CreatedAt { get; init; }
+    public required DateTimeOffset At { get; init; }
     
     public DateTimeOffset? ModifiedAt { get; init; }
     
