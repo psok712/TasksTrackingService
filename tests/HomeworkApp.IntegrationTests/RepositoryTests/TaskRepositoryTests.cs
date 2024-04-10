@@ -1,3 +1,4 @@
+using System.Net.Http.Headers;
 using FluentAssertions;
 using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
@@ -126,15 +127,14 @@ public class TaskRepositoryTests
         const int expectedParentTaskId = 1;
         const int expectedFirstChildTaskId = 2;
         const int expectedSecondChildTaskId = 3;
-        TaskStatus[] expectedStatuses = [TaskStatus.InProgress, TaskStatus.Done];
+        var expectedStatuses = Enum.GetValues(typeof(TaskStatus)).Cast<TaskStatus>().ToArray();
         var tasksParent = TaskEntityV1Faker.Generate(3);
-        tasksParent[1] = tasksParent[1].WithStatusTaskId((int)expectedStatuses[0]);
-        tasksParent[2] = tasksParent[2].WithStatusTaskId((int)expectedStatuses[1]);
         await _repository.Add(tasksParent, default);
+        
         var setParentTaskIdModel = SetParentTaskIdModelFaker.Generate(2);
         setParentTaskIdModel[0] = setParentTaskIdModel.First()
-                .WithTaskId(expectedFirstChildTaskId)
-                .WithParentTaskId(expectedParentTaskId);
+            .WithTaskId(expectedFirstChildTaskId)
+            .WithParentTaskId(expectedParentTaskId);
         await _repository.SetParentTaskId(setParentTaskIdModel.First(), CancellationToken.None);
         setParentTaskIdModel[1] = setParentTaskIdModel.Last()
             .WithTaskId(expectedSecondChildTaskId)
@@ -143,7 +143,8 @@ public class TaskRepositoryTests
         
         
         // Act
-        var results = await _repository.GetSubTasksInStatus(expectedParentTaskId, expectedStatuses, CancellationToken.None);
+        var results = 
+            await _repository.GetSubTasksInStatus(expectedParentTaskId, expectedStatuses, CancellationToken.None);
         
         
         // Asserts
