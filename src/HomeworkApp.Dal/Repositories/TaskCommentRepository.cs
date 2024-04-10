@@ -3,33 +3,38 @@ using HomeworkApp.Dal.Entities;
 using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
 using HomeworkApp.Dal.Settings;
+using HomeworkApp.Utils.Provider;
 using Microsoft.Extensions.Options;
 
 namespace HomeworkApp.Dal.Repositories;
 
 public class TaskCommentRepository : PgRepository, ITaskCommentRepository
 {
+    private readonly IDateTimeProvider _dateTimeProvider;
     public TaskCommentRepository(
-        IOptions<DalOptions> dalSettings) : base(dalSettings.Value)
+        IOptions<DalOptions> dalSettings,
+        IDateTimeProvider dateTimeProvider) : base(dalSettings.Value)
     {
+        _dateTimeProvider = dateTimeProvider;
     }
     
-    public async Task<long> Add(TaskCommentEntityV1 model, CancellationToken token)
+    public async Task<long> Add(TaskCommentEntityV1 comment, CancellationToken token)
     {
         const string sqlQuery = @"
 insert into task_comments (task_id, author_user_id, message, at) 
-values (@TaskId, @AuthorUserId, @Message, @At)
+select task_id, author_user_id, message, at
+  from UNNEST(@Comment)
 returning id;
 ";
-        
-        var @params = new DynamicParameters();
-        @params.Add("TaskId", model.TaskId);
-        @params.Add("AuthorUserId", model.AuthorUserId);
-        @params.Add("Message", model.Message);
-        @params.Add("At", model.CreatedAt);
-
         await using var connection = await GetConnection();
-        var ids = await connection.ExecuteAsync(sqlQuery, @params);
+        var ids = await connection.ExecuteAsync(
+            new CommandDefinition(
+                sqlQuery,
+                new
+                {
+                    Comment = new[] { comment }
+                },
+                cancellationToken: token));
         
         return ids;
     }
@@ -61,7 +66,7 @@ where id = @Id;
         
         var @params = new DynamicParameters();
         @params.Add("Id", taskCommentId);
-        @params.Add("DeletedAt", DateTimeOffset.UtcNow.ToUniversalTime());
+        @params.Add("DeletedAt", _dateTimeProvider.UtcNow.ToUniversalTime());
 
         await using var connection = await GetConnection();
         await connection.ExecuteAsync(sqlQuery, @params);
@@ -86,7 +91,7 @@ select id
             conditions.Add($" where deleted_at is null");
         }
         
-        conditions.Add(" order by id");
+        conditions.Add(" order by id desc");
         
         var cmd = new CommandDefinition(
             baseSql + string.Join("\n", conditions),
