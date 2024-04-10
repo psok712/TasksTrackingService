@@ -1,4 +1,3 @@
-using System.Net.Http.Headers;
 using FluentAssertions;
 using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
@@ -93,63 +92,98 @@ public class TaskRepositoryTests
     }
     
     [Fact]
-    public async Task GetSubTasksInStatus_SetParentTaskAndStatus_ShouldReturnAllChildWithSetStatuses()
-    {
-        // Arrange
-        const TaskStatus expectedStatus = TaskStatus.InProgress;
-        var parentTaskId = TaskEntityV1Faker.Generate().First().Id;
-        var tasks = TaskEntityV1Faker.Generate(2);
-        tasks[0] = tasks.First()
-            .WithParentByTaskId(parentTaskId)
-            .WithStatusTaskId((int)expectedStatus);
-        tasks[1] = tasks.Last()
-            .WithParentByTaskId(parentTaskId)
-            .WithStatusTaskId((int)TaskStatus.Done);
-        
-        TaskStatus[] statuses = [expectedStatus];
-        await _repository.Add(tasks, default);
-
-        
-        // Act
-        var results = await _repository.GetSubTasksInStatus(parentTaskId, statuses, CancellationToken.None);
-        
-        
-        // Asserts
-        results.All(t => t.ParentTaskIds[0] == parentTaskId).Should().BeTrue();
-        results.All(t => t.Status == expectedStatus).Should().BeTrue();
-    }
-    
-    
-    [Fact]
     public async Task GetSubTasksInStatus_SetHierarchyParentTaskId_ShouldReturnPathToChildTask()
     {
         // Arrange
-        const int expectedParentTaskId = 1;
-        const int expectedFirstChildTaskId = 2;
-        const int expectedSecondChildTaskId = 3;
-        var expectedStatuses = Enum.GetValues(typeof(TaskStatus)).Cast<TaskStatus>().ToArray();
-        var tasksParent = TaskEntityV1Faker.Generate(3);
-        await _repository.Add(tasksParent, default);
-        
-        var setParentTaskIdModel = SetParentTaskIdModelFaker.Generate(2);
-        setParentTaskIdModel[0] = setParentTaskIdModel.First()
-            .WithTaskId(expectedFirstChildTaskId)
-            .WithParentTaskId(expectedParentTaskId);
-        await _repository.SetParentTaskId(setParentTaskIdModel.First(), CancellationToken.None);
-        setParentTaskIdModel[1] = setParentTaskIdModel.Last()
-            .WithTaskId(expectedSecondChildTaskId)
-            .WithParentTaskId(expectedFirstChildTaskId);
-        await _repository.SetParentTaskId(setParentTaskIdModel.Last(), CancellationToken.None);
+        var statuses = new[] { TaskStatus.InProgress };
+        const int depthHierarchy = 5;
+        var hierarchy = await GenerateTaskHierarchyWithStatus(depthHierarchy, status: statuses[0]);
+        var parentTaskId = hierarchy.First();
         
         
         // Act
         var results = 
-            await _repository.GetSubTasksInStatus(expectedParentTaskId, expectedStatuses, CancellationToken.None);
+            await _repository.GetSubTasksInStatus(parentTaskId, statuses, token: default);
         
         
         // Asserts
-        results.All(t => t.ParentTaskIds[0] == expectedParentTaskId).Should().BeTrue();
-        results.Last(t => t.ParentTaskIds.Last() == expectedFirstChildTaskId).Should();
-        results.All(t => t.TaskId != expectedParentTaskId).Should().BeTrue();
+        for (var i = 0; i < results.Length; ++i)
+        {
+            results[i].ParentTaskIds.Should().BeEquivalentTo(hierarchy.Take(i + 1));
+        }
+    }
+    
+    [Fact]
+    public async Task GetSubTasksInStatus_SetStatusIsNotExist_ShouldReturnEmpty()
+    {
+        // Arrange
+        var statuses = new[] { TaskStatus.InProgress };
+        const int depthHierarchy = 5;
+        var hierarchy = await GenerateTaskHierarchyWithStatus(depthHierarchy, status: TaskStatus.Draft);
+        var parentTaskId = hierarchy.First();
+
+        
+        // Act
+        var results = await _repository.GetSubTasksInStatus(parentTaskId, statuses, token: default);
+        
+        
+        // Asserts
+        results.Should().BeEmpty();
+    }
+    
+    [Fact]
+    public async Task GetSubTasksInStatus_SetStatus_ShouldReturnTheSetStatuses()
+    {
+        // Arrange
+        const TaskStatus expectedStatus = TaskStatus.InProgress;
+        var statuses = new[] { expectedStatus };
+        const int depthHierarchy = 5;
+        var hierarchy = await GenerateTaskHierarchyWithStatus(depthHierarchy, status: expectedStatus);
+        var parentTaskId = hierarchy.First();
+
+        
+        // Act
+        var results = await _repository.GetSubTasksInStatus(parentTaskId, statuses, token: default);
+        
+        
+        // Asserts
+        results.All(t => t.Status == expectedStatus).Should().BeTrue();
+    }
+    
+    [Fact]
+    public async Task GetSubTasksInStatus_SetHierarchyParentTaskId_ShouldReturnWithoutParent()
+    {
+        // Arrange
+        const TaskStatus expectedStatus = TaskStatus.InProgress;
+        var statuses = new[] { expectedStatus };
+        const int depthHierarchy = 5;
+        var hierarchy = await GenerateTaskHierarchyWithStatus(depthHierarchy, status: expectedStatus);
+        var parentTaskId = hierarchy.First();
+
+        
+        // Act
+        var results = await _repository.GetSubTasksInStatus(parentTaskId, statuses, token: default);
+        
+        
+        // Asserts
+        results.All(t => t.ParentTaskIds.Any(x => x == t.TaskId)).Should().BeFalse();
+    }
+
+    private async Task<long[]> GenerateTaskHierarchyWithStatus(int depthHierarchy, TaskStatus status)
+    {
+        var tasks = TaskEntityV1Faker.Generate(depthHierarchy)
+            .Select(x => x with { Status = (int)status })
+            .ToArray();
+        var taskIds = await _repository.Add(tasks, default);
+
+        for (var i = 1; i < depthHierarchy; ++i)
+        {
+            var setParentTaskIdModel = SetParentTaskIdModelFaker.Generate().First()
+                .WithTaskId(taskIds[i])
+                .WithParentTaskId(taskIds[i - 1]);
+            await _repository.SetParentTaskId(setParentTaskIdModel, token: default);
+        }
+
+        return taskIds;
     }
 }
