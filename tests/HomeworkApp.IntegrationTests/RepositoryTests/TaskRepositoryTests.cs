@@ -99,11 +99,9 @@ public class TaskRepositoryTests
         var parentTaskId = TaskEntityV1Faker.Generate().First().Id;
         var tasks = TaskEntityV1Faker.Generate(2);
         tasks[0] = tasks.First()
-            .WithId(0)
             .WithParentByTaskId(parentTaskId)
             .WithStatusTaskId((int)expectedStatus);
         tasks[1] = tasks.Last()
-            .WithId(1)
             .WithParentByTaskId(parentTaskId)
             .WithStatusTaskId((int)TaskStatus.Done);
         
@@ -118,5 +116,39 @@ public class TaskRepositoryTests
         // Asserts
         results.All(t => t.ParentTaskIds[0] == parentTaskId).Should().BeTrue();
         results.All(t => t.Status == expectedStatus).Should().BeTrue();
+    }
+    
+    
+    [Fact]
+    public async Task GetSubTasksInStatus_SetHierarchyParentTaskId_ShouldReturnPathToChildTask()
+    {
+        // Arrange
+        const int expectedParentTaskId = 1;
+        const int expectedFirstChildTaskId = 2;
+        const int expectedSecondChildTaskId = 3;
+        TaskStatus[] expectedStatuses = [TaskStatus.InProgress, TaskStatus.Done];
+        var tasksParent = TaskEntityV1Faker.Generate(3);
+        tasksParent[1] = tasksParent[1].WithStatusTaskId((int)expectedStatuses[0]);
+        tasksParent[2] = tasksParent[2].WithStatusTaskId((int)expectedStatuses[1]);
+        await _repository.Add(tasksParent, default);
+        var setParentTaskIdModel = SetParentTaskIdModelFaker.Generate(2);
+        setParentTaskIdModel[0] = setParentTaskIdModel.First()
+                .WithTaskId(expectedFirstChildTaskId)
+                .WithParentTaskId(expectedParentTaskId);
+        await _repository.SetParentTaskId(setParentTaskIdModel.First(), CancellationToken.None);
+        setParentTaskIdModel[1] = setParentTaskIdModel.Last()
+            .WithTaskId(expectedSecondChildTaskId)
+            .WithParentTaskId(expectedFirstChildTaskId);
+        await _repository.SetParentTaskId(setParentTaskIdModel.Last(), CancellationToken.None);
+        
+        
+        // Act
+        var results = await _repository.GetSubTasksInStatus(expectedParentTaskId, expectedStatuses, CancellationToken.None);
+        
+        
+        // Asserts
+        results.All(t => t.ParentTaskIds[0] == expectedParentTaskId).Should().BeTrue();
+        results.Last(t => t.ParentTaskIds.Last() == expectedFirstChildTaskId).Should();
+        results.All(t => t.TaskId != expectedParentTaskId).Should().BeTrue();
     }
 }
