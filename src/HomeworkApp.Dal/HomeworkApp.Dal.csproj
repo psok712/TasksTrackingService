@@ -15,6 +15,7 @@
         <PackageReference Include="FluentMigrator.Runner.Postgres" Version="3.3.2" />
         <PackageReference Include="npgsql" Version="6.0.3" />
         <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
+        <ProjectReference Include="..\HomeworkApp.Utils\HomeworkApp.Utils.csproj" />
     </ItemGroup>
 
 

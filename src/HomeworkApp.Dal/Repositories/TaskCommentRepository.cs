@@ -3,21 +3,17 @@ using HomeworkApp.Dal.Entities;
 using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
 using HomeworkApp.Dal.Settings;
-using HomeworkApp.Utils.Provider;
+using HomeworkApp.Utils.Providers;
+using HomeworkApp.Utils.Providers.Interfaces;
 using Microsoft.Extensions.Options;
 
 namespace HomeworkApp.Dal.Repositories;
 
-public class TaskCommentRepository : PgRepository, ITaskCommentRepository
+public class TaskCommentRepository(
+    IOptions<DalOptions> dalSettings,
+    IDateTimeOffsetProvider dateTimeOffsetProvider)
+    : PgRepository(dalSettings.Value), ITaskCommentRepository
 {
-    private readonly IDateTimeProvider _dateTimeProvider;
-    public TaskCommentRepository(
-        IOptions<DalOptions> dalSettings,
-        IDateTimeProvider dateTimeProvider) : base(dalSettings.Value)
-    {
-        _dateTimeProvider = dateTimeProvider;
-    }
-    
     public async Task<long> Add(TaskCommentEntityV1 comment, CancellationToken token)
     {
         const string sqlQuery = @"
@@ -27,7 +23,7 @@ select task_id, author_user_id, message, at
 returning id;
 ";
         await using var connection = await GetConnection();
-        var ids = await connection.ExecuteAsync(
+        var ids = await connection.QueryAsync<long>(
             new CommandDefinition(
                 sqlQuery,
                 new
@@ -35,8 +31,8 @@ returning id;
                     Comment = new[] { comment }
                 },
                 cancellationToken: token));
-        
-        return ids;
+
+        return ids.First();
     }
 
     public async Task Update(TaskCommentEntityV1 model, CancellationToken token)
@@ -50,7 +46,7 @@ where id = @Id;
         var @params = new DynamicParameters();
         @params.Add("Id", model.Id);
         @params.Add($"Message", model.Message);
-        @params.Add($"ModifiedAt", model.ModifiedAt!.Value.ToUniversalTime());
+        @params.Add($"ModifiedAt", model.ModifiedAt!.Value);
 
         await using var connection = await GetConnection();
         await connection.ExecuteAsync(sqlQuery, @params);
@@ -66,7 +62,7 @@ where id = @Id;
         
         var @params = new DynamicParameters();
         @params.Add("Id", taskCommentId);
-        @params.Add("DeletedAt", _dateTimeProvider.UtcNow.ToUniversalTime());
+        @params.Add("DeletedAt", dateTimeOffsetProvider.UtcNow);
 
         await using var connection = await GetConnection();
         await connection.ExecuteAsync(sqlQuery, @params);
@@ -79,22 +75,25 @@ select id
      , task_id
      , message
      , author_user_id
+     , at
      , modified_at
      , deleted_at
   from task_comments
 ";
 
         var conditions = new List<string>();
+        var @params = new DynamicParameters();
+        @params.Add("TaskId", model.TaskId);
 
         if (!model.IncludeDeleted)
         {
-            conditions.Add($" where deleted_at is null");
+            conditions.Add($"deleted_at is null");
         }
-        
-        conditions.Add(" order by id desc");
+        conditions.Add("task_id = @TaskId");
         
         var cmd = new CommandDefinition(
-            baseSql + string.Join("\n", conditions),
+            baseSql + $" where {string.Join(" and ", conditions)} order by id desc",
+            @params,
             commandTimeout: DefaultTimeoutInSeconds,
             cancellationToken: token);
         
