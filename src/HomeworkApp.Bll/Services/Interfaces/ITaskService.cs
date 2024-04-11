@@ -10,5 +10,5 @@ public interface ITaskService
 
     Task AssignTask(Bll.Models.AssignTaskModel model, CancellationToken token);
     
-    Task<TaskMessageModel[]?> GetComments(long taskId, CancellationToken token);
+    Task<TaskMessage[]> GetComments(long taskId, CancellationToken token);
 }
