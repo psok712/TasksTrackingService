@@ -1,6 +1,6 @@
 namespace HomeworkApp.Bll.Models;
 
-public class TaskMessageModel
+public record TaskMessage
 {
     public required long TaskId { get; init; }
     public required string Comment { get; init; }
