@@ -2,6 +2,7 @@ using FluentValidation.AspNetCore;
 using HomeworkApp.Bll.Extensions;
 using HomeworkApp.Dal.Extensions;
 using HomeworkApp.Services;
+using HomeworkApp.Utils.Extensions;
 using Microsoft.AspNetCore.Server.Kestrel.Core;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -27,7 +28,8 @@ services.AddFluentValidation(conf =>
 services
     .AddBllServices()
     .AddDalInfrastructure(builder.Configuration)
-    .AddDalRepositories();
+    .AddDalRepositories()
+    .AddUtils();
 
 services.AddStackExchangeRedisCache(options =>
 {
