@@ -92,7 +92,7 @@ select id
         conditions.Add("task_id = @TaskId");
         
         var cmd = new CommandDefinition(
-            baseSql + $" where {string.Join(" and ", conditions)} order by id desc",
+            baseSql + $" where {string.Join(" and ", conditions)} order by at desc",
             @params,
             commandTimeout: DefaultTimeoutInSeconds,
             cancellationToken: token);
