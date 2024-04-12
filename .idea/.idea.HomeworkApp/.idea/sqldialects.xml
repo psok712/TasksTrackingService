@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="SqlDialectMappings">
+    <file url="file://$PROJECT_DIR$/src/HomeworkApp.Dal/Migrations/20230917143600_AddModifiedAtColumnToTaskComments.cs" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/HomeworkApp.Dal/Repositories/TaskCommentRepository.cs" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/HomeworkApp.Dal/Repositories/TaskRepository.cs" dialect="PostgreSQL" />
+    <file url="file://$PROJECT_DIR$/src/HomeworkApp.Dal/Repositories/UserRepository.cs" dialect="PostgreSQL" />
+  </component>
+</project>
