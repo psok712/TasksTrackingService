@@ -22,6 +22,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<ITakenTaskRepository, TakenTaskRepository>();
         services.AddScoped<IUserScheduleRepository, UserScheduleRepository>();
+        services.AddScoped<IUserRateLimitRepository, UserRateLimitRepository>();
     }
 
     private static void AddPostgresRepositories(IServiceCollection services)
