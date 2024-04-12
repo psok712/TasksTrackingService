@@ -22,10 +22,6 @@ public class RateLimiterService : IRateLimiterService
     {
         var requestPerMinute = _bllSettings.RedisRateLimits;
 
-        Console.WriteLine();
-        Console.WriteLine(requestPerMinute);
-        Console.WriteLine();
-
         var actualScore = await _userRateLimitRepository.IncRequestPerMinute(clientIp, token);
 
         if (actualScore <= requestPerMinute)
