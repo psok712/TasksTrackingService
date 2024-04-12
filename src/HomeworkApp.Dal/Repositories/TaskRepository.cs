@@ -4,7 +4,6 @@ using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
 using HomeworkApp.Dal.Settings;
 using Microsoft.Extensions.Options;
-using Microsoft.IdentityModel.Tokens;
 using TaskStatus = HomeworkApp.Dal.Enums.TaskStatus;
 
 namespace HomeworkApp.Dal.Repositories;

@@ -203,7 +203,7 @@ public class TaskService : ITaskService
             TaskId = t.TaskId
         }).ToArray();
 
-        var taskJson = JsonSerializer.Serialize(result.Take(5).ToArray());
+        var taskJson = JsonSerializer.Serialize(result.Take(5));
         await _distributedCache.SetStringAsync(
             cacheKey, 
             taskJson,

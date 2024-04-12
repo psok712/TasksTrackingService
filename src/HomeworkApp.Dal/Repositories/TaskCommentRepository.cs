@@ -3,7 +3,6 @@ using HomeworkApp.Dal.Entities;
 using HomeworkApp.Dal.Models;
 using HomeworkApp.Dal.Repositories.Interfaces;
 using HomeworkApp.Dal.Settings;
-using HomeworkApp.Utils.Providers;
 using HomeworkApp.Utils.Providers.Interfaces;
 using Microsoft.Extensions.Options;
 
