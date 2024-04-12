@@ -1,6 +1,6 @@
 namespace HomeworkApp.Dal.Repositories.Interfaces;
 
-public interface IUserRateLimitRepository
+public interface IUserRateLimitRepository : IRedisRepository
 {
-    Task<long> IncRequestPerMinute(long userId, CancellationToken token);
+    Task<long> IncRequestPerMinute(string clientIp, CancellationToken token);
 }
