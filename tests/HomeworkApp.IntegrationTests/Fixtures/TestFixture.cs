@@ -31,6 +31,8 @@ namespace HomeworkApp.IntegrationTests.Fixtures
         
         public IUserScheduleRepository UserScheduleRepository { get; }
         
+        public IUserRateLimitRepository UserRateLimitRepository { get; }
+        
         public IDistributedCache DistributedCache { get; }
         
         public ITaskService TaskService { get; }
@@ -74,6 +76,7 @@ namespace HomeworkApp.IntegrationTests.Fixtures
             UserScheduleRepository = serviceProvider.GetRequiredService<IUserScheduleRepository>();
             TaskCommentRepository = serviceProvider.GetRequiredService<ITaskCommentRepository>();
             DistributedCache = serviceProvider.GetRequiredService<IDistributedCache>();
+            UserRateLimitRepository = serviceProvider.GetRequiredService<IUserRateLimitRepository>();
             TaskService = serviceProvider.GetRequiredService<ITaskService>();
             
             FluentAssertionOptions.UseDefaultPrecision();
