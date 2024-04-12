@@ -1,5 +1,4 @@
 using FluentAssertions;
-using Grpc.Core;
 using HomeworkApp.Bll.Services;
 using HomeworkApp.Bll.Services.Interfaces;
 using HomeworkApp.Bll.Settings;
@@ -16,8 +15,7 @@ public class RateLimiterServiceTests
     private const long RateLimits = 100;
     
     private readonly Mock<IUserRateLimitRepository> _productRepositoryFake = new(MockBehavior.Strict);
-
-
+    
     public RateLimiterServiceTests()
     {
         Mock<IOptions<BllOptions>> bllOptions = new();
@@ -44,7 +42,7 @@ public class RateLimiterServiceTests
         {
             await _service.ThrowIfTooManyRequest(clientIp, token: default);
         }
-        catch (InvalidOperationException ex)
+        catch (InvalidOperationException)
         {
             // Asserts
             Assert.Fail("ThrowIfTooManyRequest threw an exception InvalidOperationException.");
@@ -55,7 +53,6 @@ public class RateLimiterServiceTests
     public async Task ThrowIfTooManyRequest_ClientSentTooManyRequest_Failed()
     {
         // Arrange
-        const StatusCode expectedStatusCode = StatusCode.InvalidArgument;
         const string clientIp = "144.217.253.149";
         const long amountClientRequest = 101;
         _productRepositoryFake
