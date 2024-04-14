@@ -22,6 +22,7 @@ public static class ServiceCollectionExtensions
     {
         services.AddScoped<ITakenTaskRepository, TakenTaskRepository>();
         services.AddScoped<IUserScheduleRepository, UserScheduleRepository>();
+        services.AddScoped<IUserRateLimitRepository, UserRateLimitRepository>();
     }
 
     private static void AddPostgresRepositories(IServiceCollection services)
@@ -29,6 +30,7 @@ public static class ServiceCollectionExtensions
         services.AddScoped<IUserRepository, UserRepository>();
         services.AddScoped<ITaskRepository, TaskRepository>();
         services.AddScoped<ITaskLogRepository, TaskLogRepository>();
+        services.AddScoped<ITaskCommentRepository, TaskCommentRepository>();
     }
 
     public static IServiceCollection AddDalInfrastructure(

@@ -11,6 +11,7 @@ public static class TaskEntityV1Faker
 
     private static readonly Faker<TaskEntityV1> Faker = new AutoFaker<TaskEntityV1>()
         .RuleFor(x => x.Id, _ => Create.RandomId())
+        .RuleFor(x => x.ParentTaskId, _ => null)
         .RuleFor(x => x.Status, f => f.Random.Int(1, 5))
         .RuleFor(x => x.CreatedAt, f => f.Date.RecentOffset().UtcDateTime)
         .RuleFor(x => x.CompletedAt, f => f.Date.RecentOffset().UtcDateTime)
@@ -38,4 +39,14 @@ public static class TaskEntityV1Faker
         this TaskEntityV1 src, 
         long assignedToUserId)
         => src with { AssignedToUserId = assignedToUserId };
+    
+    public static TaskEntityV1 WithParentByTaskId(
+        this TaskEntityV1 src, 
+        long parentByTaskId)
+        => src with { ParentTaskId = parentByTaskId };
+    
+    public static TaskEntityV1 WithStatusTaskId(
+        this TaskEntityV1 src, 
+        int statusTaskId)
+        => src with { Status = statusTaskId};
 }

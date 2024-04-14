@@ -17,17 +17,20 @@ public class TaskService : ITaskService
     private readonly ITaskLogRepository _taskLogRepository;
     private readonly ITakenTaskRepository _takenTaskRepository;
     private readonly IDistributedCache _distributedCache;
+    private readonly ITaskCommentRepository _taskCommentRepository;
 
     public TaskService(
         ITaskRepository taskRepository,
         ITaskLogRepository taskLogRepository,
         ITakenTaskRepository takenTaskRepository, 
-        IDistributedCache distributedCache)
+        IDistributedCache distributedCache,
+        ITaskCommentRepository taskCommentRepository)
     {
         _taskRepository = taskRepository;
         _taskLogRepository = taskLogRepository;
         _takenTaskRepository = takenTaskRepository;
         _distributedCache = distributedCache;
+        _taskCommentRepository = taskCommentRepository;
     }
     
     public async Task<long> CreateTask(
@@ -170,6 +173,47 @@ public class TaskService : ITaskService
         }, token);
         
         transaction.Complete();
+    }
+    
+    public async Task<TaskMessage[]> GetComments(long taskId, CancellationToken token)
+    {
+        var cacheKey = $"comment_tasks:{taskId}";
+        var cachedComment = await _distributedCache.GetStringAsync(cacheKey, token);
+        if (!string.IsNullOrEmpty(cachedComment))
+        {
+            return JsonSerializer.Deserialize<TaskMessage[]>(cachedComment) ?? [];
+        }
+
+        var tasks = (await _taskCommentRepository.Get(new TaskCommentGetModel
+        {
+            TaskId = taskId,
+            IncludeDeleted = true
+        }, token)).ToArray();
+
+        if (tasks.Length == 0)
+        {
+            return [];
+        }
+
+        var result = tasks.Select(t => new TaskMessage
+        {
+            At = t.At,
+            Comment = t.Message,
+            IsDeleted = t.DeletedAt is not null,
+            TaskId = t.TaskId
+        }).ToArray();
+
+        var taskJson = JsonSerializer.Serialize(result.Take(5));
+        await _distributedCache.SetStringAsync(
+            cacheKey, 
+            taskJson,
+            new DistributedCacheEntryOptions()
+            {
+                AbsoluteExpirationRelativeToNow = TimeSpan.FromSeconds(5)
+            },
+            token);
+
+        return result;
     }
 
     private TransactionScope CreateTransactionScope(
