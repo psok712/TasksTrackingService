@@ -99,7 +99,7 @@ update tasks
     public async Task<SubTaskModel[]> GetSubTasksInStatus(long parentTaskId, TaskStatus[] statuses, CancellationToken token)
     {
         const string sqlQuery = @"
-with recursive tasks_tree as (select t.id
+with recursive tasks_tree as (select t.id                            as task_id
                                    , t.title
                                    , t.status
                                    , array[parent_task_id]::bigint[] as parent_task_ids
@@ -111,9 +111,9 @@ with recursive tasks_tree as (select t.id
                               select t.id
                                    , t.title
                                    , t.status
-                                   , parent_task_ids || array[tt.id] as parent_task_ids
+                                   , parent_task_ids || array[tt.task_id] as parent_task_ids
                                 from tasks t
-                                join tasks_tree tt on t.parent_task_id = tt.id)
+                                join tasks_tree tt on t.parent_task_id = tt.task_id)
 select *
   from tasks_tree
 ";
