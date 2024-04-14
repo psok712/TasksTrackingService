@@ -184,18 +184,18 @@ public class TaskService : ITaskService
             return JsonSerializer.Deserialize<TaskMessage[]>(cachedComment) ?? [];
         }
 
-        var task = (await _taskCommentRepository.Get(new TaskCommentGetModel
+        var tasks = (await _taskCommentRepository.Get(new TaskCommentGetModel
         {
             TaskId = taskId,
             IncludeDeleted = true
         }, token)).ToArray();
 
-        if (task.Length == 0)
+        if (tasks.Length == 0)
         {
             return [];
         }
 
-        var result = task.Select(t => new TaskMessage
+        var result = tasks.Select(t => new TaskMessage
         {
             At = t.At,
             Comment = t.Message,
